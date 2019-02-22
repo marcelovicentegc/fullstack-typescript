@@ -1,0 +1,10 @@
+overwrite: true
+schema: "http://127.0.0.1:8080/api/playground"
+documents: ./src/**/*.graphql.{ts, tsx}
+generates:
+  ./src/client/__types__/typeDefs.ts:
+    config:
+      noNamespaces: true
+    plugins:
+      - typescript-common
+      - typescript-client
