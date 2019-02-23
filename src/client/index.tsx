@@ -3,11 +3,13 @@ import { ApolloClient } from "apollo-client";
 import { ApolloLink } from "apollo-link";
 import { onError } from "apollo-link-error";
 import { createUploadLink } from "apollo-upload-client";
+import { Provider } from "mobx-react";
 import * as React from "react";
 import { ApolloProvider } from "react-apollo";
 import * as ReactDOM from "react-dom";
 import "./main.css";
 import { Routes } from "./routes/index";
+import { AnimalsStore } from "./stores/index";
 
 declare let module: any;
 
@@ -34,7 +36,9 @@ class App extends React.Component<{}, {}> {
   render() {
     return (
       <ApolloProvider client={client}>
-        <Routes />
+        <Provider {...AnimalsStore}>
+          <Routes />
+        </Provider>
       </ApolloProvider>
     );
   }

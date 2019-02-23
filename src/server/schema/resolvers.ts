@@ -1,4 +1,5 @@
 import { IResolvers } from "graphql-tools";
+import { getConnection } from "typeorm";
 import { Animal } from "../database/entities/index";
 
 const resolvers: IResolvers = {
@@ -14,19 +15,25 @@ const resolvers: IResolvers = {
         favoriteFood: favoriteFood
       });
       await animal.save();
-      return true;
+      return animal;
     },
-    updateAnimal: async (_, { id, species, favoriteFood }) => {
+    updateAnimal: async (_, { id, ...args }) => {
       try {
-        await Animal.update(id, species, favoriteFood);
+        await Animal.update(id, args);
       } catch (err) {
+        console.log(err);
         return false;
       }
       return true;
     },
     deleteAnimal: async (_, { id }) => {
       try {
-        await Animal.remove(id);
+        const deleteQuery = getConnection()
+          .createQueryBuilder()
+          .delete()
+          .from(Animal)
+          .where("id = :id", { id: id });
+        await deleteQuery.execute();
       } catch (err) {
         console.log(err);
         return false;

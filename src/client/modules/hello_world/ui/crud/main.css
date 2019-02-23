@@ -1,0 +1,36 @@
+form {
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+form input {
+  border: none;
+  font-size: 90%;
+  padding-left: 10px;
+}
+
+form input:focus {
+  outline: none;
+}
+
+form .button-wrapper {
+  padding-top: 20px;
+  display: inherit;
+  -webkit-box-pack: inherit;
+      -ms-flex-pack: inherit;
+          justify-content: inherit;
+}
+
+.animal {
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.animal:hover {
+  cursor: pointer;
+  color: #0087cb;
+}
+/*# sourceMappingURL=main.css.map */
