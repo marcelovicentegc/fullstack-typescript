@@ -13,7 +13,7 @@
 
 - State management:
 
-  - [ ] **MobX**
+  - **MobX**
 
 - GraphQL client:
   - **Apollo Client**
