@@ -27,7 +27,7 @@ module.exports = {
       template: path.resolve(__dirname, "src", "client", "index.html"),
       filename: "index.html"
     }),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
   ],
   module: {
     rules: [

@@ -2,8 +2,7 @@
 
 ### General features
 
-- Hot module reload
-- Live reload
+- Hot module and live reload
 - File upload ready
 
 ### Client-side features

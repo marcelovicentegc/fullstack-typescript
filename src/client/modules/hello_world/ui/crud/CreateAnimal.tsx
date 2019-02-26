@@ -1,18 +1,21 @@
+import { inject, observer } from "mobx-react";
 import * as React from "react";
 import { Mutation } from "react-apollo";
 import { createAnimal } from "../../../../../server/schema/graphql/Mutations.graphql";
+import { AnimalsStore } from "../../../../stores";
 import {
   CreateAnimalMutation,
   CreateAnimalVariables
 } from "../../../../__types__/typeDefs";
 import "./main.css";
 
-export default class CreateAnimal extends React.Component {
-  state = {
-    species: "",
-    favoriteFood: ""
-  };
+interface Props {
+  animalsStore?: AnimalsStore;
+}
 
+@inject("animalsStore")
+@observer
+export default class CreateAnimal extends React.Component<Props> {
   render() {
     return (
       <Mutation<CreateAnimalMutation, CreateAnimalVariables>
@@ -27,7 +30,9 @@ export default class CreateAnimal extends React.Component {
                 <input
                   type="text"
                   placeholder="Magic mushrooms"
-                  onChange={e => this.setState({ species: e.target.value })}
+                  onChange={e =>
+                    (this.props.animalsStore.species = e.target.value)
+                  }
                 />
               </div>
               <div className="field">
@@ -36,7 +41,7 @@ export default class CreateAnimal extends React.Component {
                   type="text"
                   placeholder="Dead plants"
                   onChange={e =>
-                    this.setState({ favoriteFood: e.target.value })
+                    (this.props.animalsStore.favoriteFood = e.target.value)
                   }
                 />
               </div>
@@ -46,8 +51,8 @@ export default class CreateAnimal extends React.Component {
                   onClick={async () => {
                     await mutate({
                       variables: {
-                        species: this.state.species,
-                        favoriteFood: this.state.favoriteFood
+                        species: this.props.animalsStore.species,
+                        favoriteFood: this.props.animalsStore.favoriteFood
                       }
                     });
                   }}

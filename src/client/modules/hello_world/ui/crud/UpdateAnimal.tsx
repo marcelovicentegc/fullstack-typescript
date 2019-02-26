@@ -1,6 +1,8 @@
+import { inject, observer } from "mobx-react";
 import * as React from "react";
 import { Mutation } from "react-apollo";
 import { updateAnimal } from "../../../../../server/schema/graphql/Mutations.graphql";
+import { AnimalsStore } from "../../../../stores";
 import {
   GetAnimalAnimal,
   UpdateAnimalMutation,
@@ -9,14 +11,12 @@ import {
 
 interface Props {
   animal: GetAnimalAnimal;
+  animalsStore?: AnimalsStore;
 }
 
+@inject("animalsStore")
+@observer
 export default class UpdateAnimal extends React.Component<Props> {
-  state = {
-    species: "",
-    favoriteFood: ""
-  };
-
   render() {
     return (
       <Mutation<UpdateAnimalMutation, UpdateAnimalVariables>
@@ -29,7 +29,9 @@ export default class UpdateAnimal extends React.Component<Props> {
               <input
                 type="text"
                 placeholder={this.props.animal.species}
-                onChange={e => this.setState({ species: e.target.value })}
+                onChange={e =>
+                  (this.props.animalsStore.species = e.target.value)
+                }
               />
             </div>
             <div className="field">
@@ -37,7 +39,9 @@ export default class UpdateAnimal extends React.Component<Props> {
               <input
                 type="text"
                 placeholder={this.props.animal.favoriteFood}
-                onChange={e => this.setState({ favoriteFood: e.target.value })}
+                onChange={e =>
+                  (this.props.animalsStore.favoriteFood = e.target.value)
+                }
               />
             </div>
             <div className="button-wrapper">
@@ -47,8 +51,8 @@ export default class UpdateAnimal extends React.Component<Props> {
                   await mutate({
                     variables: {
                       id: this.props.animal.id,
-                      species: this.state.species,
-                      favoriteFood: this.state.favoriteFood
+                      species: this.props.animalsStore.species,
+                      favoriteFood: this.props.animalsStore.favoriteFood
                     }
                   });
                 }}

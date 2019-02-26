@@ -9,8 +9,9 @@ import { ApolloProvider } from "react-apollo";
 import * as ReactDOM from "react-dom";
 import "./main.css";
 import { Routes } from "./routes/index";
-import { AnimalsStore } from "./stores/index";
+import { RootStore } from "./stores";
 
+const rootStore = new RootStore();
 declare let module: any;
 
 const client = new ApolloClient({
@@ -32,11 +33,11 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 });
 
-class App extends React.Component<{}, {}> {
+class App extends React.Component {
   render() {
     return (
       <ApolloProvider client={client}>
-        <Provider {...AnimalsStore}>
+        <Provider {...rootStore}>
           <Routes />
         </Provider>
       </ApolloProvider>

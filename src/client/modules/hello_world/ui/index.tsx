@@ -1,51 +1,33 @@
+import { inject, observer } from "mobx-react";
 import * as React from "react";
+import { AnimalsStore } from "../../../stores/AnimalsStore.store";
 import CreateAnimal from "./crud/CreateAnimal";
 import ListAnimals from "./crud/ListAnimals";
 import "./main.css";
 
-interface Props {}
+interface Props {
+  animalsStore?: AnimalsStore;
+}
 
+@inject("animalsStore")
+@observer
 export default class HelloWorld extends React.Component<Props> {
-  constructor(props: Props) {
-    super(props);
-
-    this.handleCreate = this.handleCreate.bind(this);
-    this.handleUpdate = this.handleUpdate.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
-  }
-
-  state = {
-    helloworld: true,
-    create: false,
-    update: false,
-    delete: false
+  private handleCreate = () => {
+    this.props.animalsStore.handleCreate();
   };
 
-  handleCreate() {
-    this.setState({
-      create: true,
-      helloworld: false
-    });
-  }
+  private handleUpdate = () => {
+    this.props.animalsStore.handleUpdate();
+  };
 
-  handleUpdate() {
-    this.setState({
-      update: true,
-      helloworld: false
-    });
-  }
-
-  handleDelete() {
-    this.setState({
-      delete: true,
-      helloworld: false
-    });
-  }
+  private handleDelete = () => {
+    this.props.animalsStore.handleDelete();
+  };
 
   render() {
     return (
       <>
-        {this.state.helloworld ? (
+        {this.props.animalsStore.helloworld ? (
           <>
             <div className="hello-world">
               <p>Hello world 👽!</p>
@@ -62,11 +44,11 @@ export default class HelloWorld extends React.Component<Props> {
               </button>
             </div>
           </>
-        ) : null || this.state.create ? (
+        ) : null || this.props.animalsStore.create ? (
           <CreateAnimal />
-        ) : null || this.state.update ? (
+        ) : null || this.props.animalsStore.update ? (
           <ListAnimals to="update" />
-        ) : null || this.state.delete ? (
+        ) : null || this.props.animalsStore.delete ? (
           <ListAnimals to="delete" />
         ) : null}
       </>

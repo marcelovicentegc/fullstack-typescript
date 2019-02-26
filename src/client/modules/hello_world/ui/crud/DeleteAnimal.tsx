@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Mutation } from "react-apollo";
 import { deleteAnimal } from "../../../../../server/schema/graphql/Mutations.graphql";
-import { getAnimals } from "../../../../../server/schema/graphql/Queries.graphql";
 import {
   DeleteAnimalMutation,
   DeleteAnimalVariables,
@@ -17,20 +16,18 @@ export default class DeleteAnimal extends React.Component<Props> {
     return (
       <Mutation<DeleteAnimalMutation, DeleteAnimalVariables>
         mutation={deleteAnimal}
-        refetchQueries={[{ query: getAnimals }]}
-        awaitRefetchQueries={true}
       >
         {mutate => (
           <>
             <button
               className="button"
               onClick={async () => {
-                const response = await mutate({
+                await mutate({
                   variables: {
                     id: this.props.animal.id
                   }
                 });
-                console.log(response);
+                this;
               }}
             >
               <span>Submit</span>
