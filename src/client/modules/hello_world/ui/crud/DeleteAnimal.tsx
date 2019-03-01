@@ -26,8 +26,7 @@ export default class DeleteAnimal extends React.Component<Props> {
                   variables: {
                     id: this.props.animal.id
                   }
-                });
-                this;
+                }).then(() => window.location.reload());
               }}
             >
               <span>Submit</span>
