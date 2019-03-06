@@ -7,7 +7,7 @@ import { Provider } from "mobx-react";
 import * as React from "react";
 import { ApolloProvider } from "react-apollo";
 import * as ReactDOM from "react-dom";
-import "./main.css";
+import "./main.scss";
 import { Routes } from "./routes/index";
 import { RootStore } from "./stores";
 

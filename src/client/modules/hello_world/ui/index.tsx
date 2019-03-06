@@ -3,7 +3,7 @@ import * as React from "react";
 import { AnimalsStore } from "../../../stores/AnimalsStore.store";
 import CreateAnimal from "./crud/CreateAnimal";
 import ListAnimals from "./crud/ListAnimals";
-import "./main.css";
+import "./main.scss";
 
 interface Props {
   animalsStore?: AnimalsStore;

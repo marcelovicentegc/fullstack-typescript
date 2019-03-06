@@ -27,7 +27,7 @@ module.exports = {
       template: path.resolve(__dirname, "src", "client", "index.html"),
       filename: "index.html"
     }),
-    new webpack.HotModuleReplacementPlugin(),
+    new webpack.HotModuleReplacementPlugin()
   ],
   module: {
     rules: [
@@ -48,6 +48,10 @@ module.exports = {
       {
         test: /\.css$/,
         use: ["style-loader", "css-loader"]
+      },
+      {
+        test: /\.scss$/,
+        use: ["style-loader", "css-loader", "sass-loader"]
       },
       {
         test: /\.(png|jp(e*)g|gif|svg)$/,

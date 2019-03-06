@@ -1,4 +1,4 @@
-# fullstack-typescript 👽
+# 👽 fullstack-typescript
 
 ### General features
 

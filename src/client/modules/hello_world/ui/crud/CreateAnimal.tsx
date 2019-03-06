@@ -7,7 +7,7 @@ import {
   CreateAnimalMutation,
   CreateAnimalVariables
 } from "../../../../__types__/typeDefs";
-import "./main.css";
+import "./main.scss";
 
 interface Props {
   animalsStore?: AnimalsStore;
