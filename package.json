@@ -54,7 +54,6 @@
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "express": "^4.16.4",
-    "global": "^4.3.2",
     "graphql": "^14.1.1",
     "graphql-code-generator": "^0.17.0",
     "mobx": "^5.9.0",
