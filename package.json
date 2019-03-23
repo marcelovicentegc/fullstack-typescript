@@ -14,7 +14,8 @@
     "test-watch": "jest --watch",
     "test": "jest",
     "test-wait": "wait-on tcp:8080 && yarn test",
-    "test-alone": "concurrently --kill-others --success first \"yarn run server\" \"yarn run test-wait\""
+    "test-alone": "concurrently --kill-others --success first \"yarn run server\" \"yarn run test-wait\"",
+    "upgd": "yarn upgrade-interactive"
   },
   "devDependencies": {
     "@types/apollo-upload-client": "^8.1.1",
