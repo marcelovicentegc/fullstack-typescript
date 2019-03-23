@@ -1,7 +1,11 @@
 import * as React from "react";
 import { Mutation } from "react-apollo";
 import { deleteAnimal } from "../../../../../server/schema/graphql/Mutations.graphql";
-import { DeleteAnimalMutation, DeleteAnimalVariables, GetAnimalAnimal } from "../../../../__types__/typeDefs";
+import {
+  DeleteAnimalMutation,
+  DeleteAnimalVariables,
+  GetAnimalAnimal
+} from "../../../../__types__/typeDefs";
 
 interface Props {
   animal: GetAnimalAnimal;
@@ -16,11 +20,6 @@ export default class DeleteAnimal extends React.Component<Props> {
         >
           {mutate => (
             <>
-
-
-
-
-
               <button
                 className="button"
                 onClick={async () => {
