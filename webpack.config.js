@@ -1,6 +1,9 @@
 const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+  .BundleAnalyzerPlugin;
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
 module.exports = {
   context: __dirname,
@@ -27,7 +30,10 @@ module.exports = {
       template: path.resolve(__dirname, "src", "client", "index.html"),
       filename: "index.html"
     }),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.optimize.AggressiveMergingPlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new BundleAnalyzerPlugin()
   ],
   module: {
     rules: [
@@ -61,6 +67,36 @@ module.exports = {
           outputPath: "/"
         }
       }
+    ]
+  },
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        uglifyOptions: {
+          mangle: true,
+          output: {
+            comments: false
+          },
+          compress: {
+            warnings: false, // Suppress uglification warnings
+            pure_getters: true,
+            unsafe: true,
+            unsafe_comps: true,
+            screw_ie8: true,
+            conditionals: true,
+            unused: true,
+            comparisons: true,
+            sequences: true,
+            dead_code: true,
+            evaluate: true,
+            if_return: true,
+            join_vars: true
+          }
+        },
+        exclude: [/\.min\.js$/gi]
+      })
     ]
   },
   devServer: {

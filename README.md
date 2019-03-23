@@ -16,7 +16,11 @@
   - **MobX**
 
 - GraphQL client:
+
   - **Apollo Client**
+
+- Testing framework:
+  - **Enzyme**
 
 ### Server-side features
 
