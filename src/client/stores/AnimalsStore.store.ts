@@ -1,4 +1,5 @@
 import { action, observable } from "mobx";
+import { createContext } from "react";
 import { RootStore } from "./RootStore.store";
 
 export class AnimalsStore {
@@ -37,3 +38,5 @@ export class AnimalsStore {
     this.helloworld = false;
   };
 }
+
+export default createContext(new AnimalsStore(this));

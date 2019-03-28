@@ -81,6 +81,7 @@
     "graphql-code-generator": "^0.17.0",
     "mobx": "^5.9.0",
     "mobx-react": "^5.4.3",
+    "mobx-react-lite": "^1.2.0",
     "pg": "^7.8.1",
     "pg-hstore": "^2.3.2",
     "react": "^16.8.3",

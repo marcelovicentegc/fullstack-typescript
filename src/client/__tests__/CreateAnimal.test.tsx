@@ -12,7 +12,7 @@ import {
 describe("CreateAnimal suite", () => {
   const animalsStore = new AnimalsStore(this);
 
-  const wrapper = shallow(<CreateAnimal animalsStore={animalsStore} />);
+  const wrapper = shallow(<CreateAnimal />);
   it("Should render without throwing an error", () => {
     wrapper.contains(
       <Mutation<CreateAnimalMutation, CreateAnimalVariables>
