@@ -28,6 +28,11 @@ module.exports = {
       template: path.resolve(__dirname, "src", "client", "index.html"),
       filename: "index.html"
     }),
+    new webpack.DefinePlugin({
+      "process.env": {
+        TCP: JSON.stringify(process.env.TCP)
+      }
+    }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin()
@@ -38,7 +43,7 @@ module.exports = {
         test: /\.tsx?$/,
         loader: "ts-loader",
         options: {
-          configFile: "tsconfig.json"
+          configFile: "tsconfig.client.json"
         },
         exclude: [/node_modules/]
       },

@@ -1,18 +1,16 @@
 {
   "compilerOptions": {
     "outDir": "./dist/",
-    "sourceMap": true,
-    "noImplicitAny": true,
-    "module": "es6",
     "target": "es5",
     "jsx": "react",
     "moduleResolution": "node",
-    "lib": ["es6", "dom", "dom.iterable"],
+    "sourceMap": true,
+    "noImplicitAny": true,
     "declaration": true,
     "downlevelIteration": true,
     "removeComments": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true
   },
-  "include": ["./src/**/*"]
+  "include": ["./src/client/**/*"]
 }

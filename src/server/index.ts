@@ -1,8 +1,10 @@
 import { ApolloServer } from "apollo-server-express";
 import * as bodyParser from "body-parser";
+import * as cors from "cors";
 import * as express from "express";
+import * as path from "path";
 import "reflect-metadata";
-import { createConnection } from "typeorm";
+import { createConnection, getConnectionOptions } from "typeorm";
 import schema from "./schema/schema";
 
 const startServer = async () => {
@@ -16,8 +18,17 @@ const startServer = async () => {
 
   let retries = 5;
   while (retries) {
+    if (process.env.NODE_ENV === "production") {
+      var connectionOptions = await getConnectionOptions();
+      Object.assign(connectionOptions, {
+        entities: ["dist/server/database/**/*.model.js"],
+        cli: {
+          entitiesDir: "dist/server/database/entities"
+        }
+      });
+    }
     try {
-      await createConnection().then(connection => {
+      await createConnection(connectionOptions).then(connection => {
         console.log("Connected to database");
       });
       break;
@@ -35,14 +46,43 @@ const startServer = async () => {
     app,
     path: "/api/playground",
     cors: {
-      origin: ["http://localhost:3000", "http://127.0.0.1:3000"],
+      origin: [
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        "http://localhost:4000",
+        "http://127.0.0.1:4000"
+      ],
       credentials: true
     }
   });
 
-  app.listen(8080, () => {
-    console.log("Server is ready for requests on port 8080");
-  });
+  if (process.env.NODE_ENV === "production") {
+    app.use(express.static(path.resolve("./dist")));
+    app.get(
+      "*",
+      cors({
+        origin: [
+          "http://localhost:3000",
+          "http://127.0.0.1:3000",
+          "http://localhost:4000",
+          "http://127.0.0.1:4000"
+        ]
+      }),
+      (req, res) => {
+        res.sendFile(path.resolve("./dist/index.html"));
+      }
+    );
+
+    app.listen(4000, () => {
+      console.log("Server is ready for requests on port 4000");
+    });
+  }
+
+  if (process.env.NODE_ENV === "development") {
+    app.listen(8080, () => {
+      console.log("Server is ready for requests on port 8080");
+    });
+  }
 };
 
 startServer();
