@@ -1,12 +1,12 @@
 import * as React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import CubeConnector from "../modules/cube/CubeConnector";
+import HelloWorldConnector from "../modules/hello_world/HelloWorldConnector";
 
 export const Routes = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact={true} path="/" component={CubeConnector} />
+        <Route exact={true} path="/" component={HelloWorldConnector} />
       </Switch>
     </BrowserRouter>
   );
