@@ -1,14 +1,101 @@
 {
   "defaultSeverity": "error",
+  "linterOptions": {
+    "exclude": [
+      "src/**/*[aA]pi.ts",
+      "src/spec/**",
+      "src/**/*.d.ts",
+      "src/**/spec*.ts",
+      "node_modules/"
+    ]
+  },
   "extends": [
     "tslint:recommended",
-    "tslint-config-prettier",
-    "tslint-plugin-prettier",
-    "tslint-react"
+    "tslint-immutable",
+    "tslint:latest",
+    "tslint-config-prettier"
   ],
   "jsRules": {},
   "rules": {
-    "prettier": true
+    "indent": [true, "spaces", 4],
+    "semicolon": [
+      true,
+      "always",
+      "ignore-bound-class-methods",
+      "ignore-interfaces"
+    ],
+    "quotemark": [true, "double", "avoid-escape", "jsx-double"],
+    "whitespace": [
+      true,
+      "check-branch",
+      "check-decl",
+      "check-operator",
+      "check-module",
+      "check-separator",
+      "check-type"
+    ],
+    "ordered-imports": false,
+    "typedef-whitespace": [
+      true,
+      {
+        "call-signature": "nospace",
+        "index-signature": "nospace",
+        "parameter": "nospace",
+        "property-declaration": "nospace",
+        "variable-declaration": "nospace"
+      },
+      {
+        "call-signature": "onespace",
+        "index-signature": "onespace",
+        "parameter": "onespace",
+        "property-declaration": "onespace",
+        "variable-declaration": "onespace"
+      }
+    ],
+    "no-var-requires": false,
+    "variable-name": false,
+    "max-classes-per-file": false,
+    "member-ordering": false,
+    "no-var-keyword": true,
+    "typedef": [false, "call-signature", "arrow-parameter"],
+    "curly": false,
+    "no-shadowed-variable": false,
+    "readonly-keyword": false,
+    "array-type": false,
+    "readonly-array": false,
+    "no-let": false,
+    "no-object-mutation": false,
+    "no-delete": true,
+    "object-literal-shorthand": false,
+    "object-literal-sort-keys": false,
+    "no-this": false,
+    "no-class": false,
+    "no-console": false,
+    "no-mixed-interface": true,
+    "interface-name": false,
+    "no-bitwise": false,
+    "no-parameter-reassignment": false,
+    "no-expression-statement": false,
+    "no-loop-statement": false,
+    "no-if-statement": false,
+    "no-method-signature": false,
+    "no-empty": false,
+    "no-submodule-imports": false,
+    "no-consecutive-blank-lines": true,
+    "no-implicit-dependencies": [true, "dev"],
+    "no-unused-variable": false,
+    "no-unnecessary-callback-wrapper": false,
+    "arrow-return-shorthand": true,
+    "no-for-in-array": true,
+    "prefer-for-of": false,
+    "no-string-throw": false,
+    "no-string-literal": false,
+    "no-return-await": false,
+    "no-conditional-assignment": false,
+    "member-access": false,
+    "forin": false,
+    "radix": false,
+    "no-use-before-declare": false
   },
   "rulesDirectory": []
 }

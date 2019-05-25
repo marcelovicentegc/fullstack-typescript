@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css?family=Ubuntu+Mono&display=swap");
+
+.cube-pop-up {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 2;
+
+  span {
+    font-family: "Ubuntu Mono", monospace;
+    font-size: 300%;
+    z-index: 3;
+  }
+}
