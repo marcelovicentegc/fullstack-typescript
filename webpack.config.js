@@ -2,8 +2,17 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
+const WebappWebpackPlugin = require("webapp-webpack-plugin");
 
-module.exports = {
+const DEV_MODE = process.env.NODE_ENV === "development";
+
+const smp = new SpeedMeasurePlugin({
+  disable: !DEV_MODE,
+  outputFormat: "humanVerbose"
+});
+
+module.exports = smp.wrap({
   context: __dirname,
   mode: "development",
   entry: {
@@ -30,8 +39,14 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       "process.env": {
-        TCP: JSON.stringify(process.env.TCP)
+        TCP: JSON.stringify(process.env.TCP),
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV)
       }
+    }),
+    new WebappWebpackPlugin({
+      logo: "./src/client/assets/fullstack-typescript.png",
+      cache: true,
+      inject: true
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),
@@ -117,4 +132,4 @@ module.exports = {
       colors: true
     }
   }
-};
+});
