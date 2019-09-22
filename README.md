@@ -25,7 +25,7 @@
 
 - Testing framework:
 
-  1. **Enzyme**
+  1. **Jest**
   2. **Testing-library**
 
 ## 🖥 Server-side features
