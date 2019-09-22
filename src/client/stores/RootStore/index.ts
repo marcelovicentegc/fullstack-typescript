@@ -1,4 +1,4 @@
-import { AnimalsStore, ErrorStore } from ".";
+import { AnimalsStore, ErrorStore } from "..";
 import { createContext } from "react";
 
 export class RootStore {

@@ -1,5 +1,5 @@
 import { action, observable } from "mobx";
-import { RootStore } from "./RootStore";
+import { RootStore } from "../RootStore";
 
 export class AnimalsStore {
   protected rootStore: RootStore;

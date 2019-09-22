@@ -1,0 +1,23 @@
+stages:
+  - build
+  - test-client
+
+cache:
+  paths:
+    - node_modules/
+
+Build project:
+  image: node:latest
+  stage: build
+  script:
+    - yarn
+    - NODE_ENV=development yarn build
+  artifacts:
+    paths:
+      - dist/
+
+Run client-side unit tests:
+  stage: test-client
+  image: node:latest
+  script:
+    - yarn test-client

@@ -35,10 +35,10 @@ export class HelloWorld extends React.Component<Props> {
         )}
         {this.props.animalsStore.helloworld && (
           <>
-            <div className={style.helloWorld}>
+            <div className={style.helloWorld} data-testid="helloWorld">
               <p>Hello world 👽!</p>
             </div>
-            <div className={style.nav}>
+            <div className={style.nav} data-testid="nav">
               <Button onClick={this.handleCreate} label={"Create"} />
               <Button onClick={this.handleUpdate} label={"Update"} />
               <Button onClick={this.handleDelete} label={"Delete"} />

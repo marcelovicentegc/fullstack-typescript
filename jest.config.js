@@ -3,12 +3,12 @@ module.exports = {
   transform: {
     "^.+\\.tsx?$": "ts-jest"
   },
-  testRegex: "(/__tests__/.*|(\\.|/)(test/spec))\\.tsx?$",
+  testRegex: "(/__tests__/.*)\\.tsx?$",
   moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
   moduleNameMapper: {
-    "\\.(scss)$": "identity-obj-proxy"
+    ".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2|svg)$":
+      "jest-transform-stub"
   },
-  snapshotSerializers: ["enzyme-to-json/serializer"],
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
   verbose: true
 };

@@ -11,8 +11,8 @@ interface Props
 
 export const Button: React.SFC<Props> = props => {
   return (
-    <button {...props} className={style.button}>
-      <span>{props.label}</span>
+    <button {...props} className={style.button} data-testid="button">
+      <span data-testid="buttonSpan">{props.label}</span>
     </button>
   );
 };
