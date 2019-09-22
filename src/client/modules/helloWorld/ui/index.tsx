@@ -1,10 +1,11 @@
 import { inject, observer } from "mobx-react";
 import * as React from "react";
 import { AnimalsStore, ErrorStore } from "../../../stores";
-import { CreateAnimal } from "./crud/CreateAnimal";
-import { ListAnimals } from "./crud/ListAnimals";
-import "./main.scss";
-import { ErrorMessage } from "./misc/ErrorMessage";
+import { CreateAnimal } from "./components/CreateAnimal";
+import { ListAnimals } from "./components/ListAnimals";
+import * as style from "./main.scss";
+import { ErrorMessage } from "./components/ErrorMessage";
+import { Button } from "./components/Button";
 
 interface Props {
   animalsStore?: AnimalsStore;
@@ -34,19 +35,13 @@ export class HelloWorld extends React.Component<Props> {
         )}
         {this.props.animalsStore.helloworld && (
           <>
-            <div className="hello-world">
+            <div className={style.helloWorld}>
               <p>Hello world 👽!</p>
             </div>
-            <div className="nav">
-              <button className="button" onClick={this.handleCreate}>
-                <span>Create</span>
-              </button>
-              <button className="button" onClick={this.handleUpdate}>
-                <span>Update</span>
-              </button>
-              <button className="button" onClick={this.handleDelete}>
-                <span>Delete</span>
-              </button>
+            <div className={style.nav}>
+              <Button onClick={this.handleCreate} label={"Create"} />
+              <Button onClick={this.handleUpdate} label={"Update"} />
+              <Button onClick={this.handleDelete} label={"Delete"} />
             </div>
           </>
         )}

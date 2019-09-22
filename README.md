@@ -9,40 +9,46 @@
 
 - UI framework:
 
-  - **React**
+  1. **React**
+
+- Style pre-processor:
+
+  1. **SASS**
 
 - State management:
 
-  - **MobX**
+  1. **MobX**
 
 - GraphQL client:
 
-  - **Apollo Client**
+  1. **Apollo Client**
 
 - Testing framework:
-  - **Enzyme**
+
+  1. **Enzyme**
+  2. **Testing-library**
 
 ## 🖥 Server-side features
 
 - HTTP server:
 
-  - **Express**
+  1. **Express**
 
 - GraphQL server:
 
-  - **Apollo Server**
+  1. **Apollo Server**
 
 - Database:
 
-  - **PostgreSQL**
+  1. **PostgreSQL**
 
 - Object-relational mapping framework:
 
-  - **TypeORM**
+  1. **TypeORM**
 
 - Data query and manipulation framework:
 
-  - **GraphQL**
+  1. **GraphQL**
 
 ## 🌱 Directions
 

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { HelloWorldConnector } from "../modules/hello_world/HelloWorldConnector";
+import { HelloWorldConnector } from "../modules/helloWorld/connectors/HelloWorldConnector";
 
 export const Routes = () => {
   return (

@@ -1,0 +1,5 @@
+@import "../../../../../global-style.scss";
+
+form {
+  @include formSubstance();
+}

@@ -1,13 +1,15 @@
 import { inject, observer } from "mobx-react";
 import * as React from "react";
 import { Mutation } from "react-apollo";
-import { updateAnimal } from "../../../../../server/schema/graphql/Mutations.graphql";
-import { AnimalsStore } from "../../../../stores";
+import { updateAnimal } from "../../../../../../server/schema/graphql/Mutations.graphql";
+import { AnimalsStore } from "../../../../../stores";
 import {
   GetAnimalAnimal,
   UpdateAnimalMutation,
   UpdateAnimalVariables
-} from "../../../../__types__/typeDefs";
+} from "../../../../../__types__/typeDefs";
+import { Button } from "../Button";
+import * as style from "./main.scss";
 
 interface Props {
   animal: GetAnimalAnimal;
@@ -25,7 +27,7 @@ export class UpdateAnimal extends React.Component<Props> {
         >
           {mutate => (
             <form>
-              <div className="field">
+              <div className={style.field}>
                 <label>Species:</label>
                 <input
                   type="text"
@@ -35,7 +37,7 @@ export class UpdateAnimal extends React.Component<Props> {
                   }
                 />
               </div>
-              <div className="field">
+              <div className={style.field}>
                 <label>Favorite food:</label>
                 <input
                   type="text"
@@ -45,9 +47,9 @@ export class UpdateAnimal extends React.Component<Props> {
                   }
                 />
               </div>
-              <div className="button-wrapper">
-                <button
-                  className="button"
+              <div className={style.buttonWrapper}>
+                <Button
+                  label={"Update"}
                   onClick={async () => {
                     await mutate({
                       variables: {
@@ -57,9 +59,7 @@ export class UpdateAnimal extends React.Component<Props> {
                       }
                     });
                   }}
-                >
-                  <span>Submit</span>
-                </button>
+                />
               </div>
             </form>
           )}

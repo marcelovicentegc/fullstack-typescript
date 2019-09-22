@@ -1,12 +1,13 @@
 import { inject, observer } from "mobx-react";
 import * as React from "react";
 import { Query } from "react-apollo";
-import { getAnimals } from "../../../../../server/schema/graphql/Queries.graphql";
-import { AnimalsStore } from "../../../../stores";
-import { GetAnimalsQuery } from "../../../../__types__/typeDefs";
-import { Loading } from "../misc/Loading";
-import { NoData } from "../misc/NoData";
-import { Animal } from "./Animal";
+import { getAnimals } from "../../../../../../server/schema/graphql/Queries.graphql";
+import { AnimalsStore } from "../../../../../stores";
+import { GetAnimalsQuery } from "../../../../../__types__/typeDefs";
+import { Loading } from "../Loading";
+import { NoData } from "../NoData";
+import { Animal } from "../Animal";
+import * as style from "./main.scss";
 
 interface Props {
   to: string;
@@ -36,7 +37,7 @@ export class ListAnimals extends React.Component<Props> {
                       <div
                         key={i}
                         id={animal.id}
-                        className="animal"
+                        className={style.animal}
                         onClick={() => {
                           this.props.animalsStore.selected = animal.id;
                           this.handleMutation();

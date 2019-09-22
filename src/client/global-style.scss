@@ -1,4 +1,4 @@
-form {
+@mixin formSubstance {
   display: grid;
   justify-content: center;
 
@@ -12,18 +12,9 @@ form {
     }
   }
 
-  .button-wrapper {
+  .buttonWrapper {
     padding-top: 20px;
     display: inherit;
     justify-content: inherit;
-  }
-}
-
-.animal {
-  transition: 0.2s;
-
-  &:hover {
-    cursor: pointer;
-    color: #0087cb;
   }
 }

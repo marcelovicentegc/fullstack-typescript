@@ -1,13 +1,14 @@
 import { observer } from "mobx-react";
 import * as React from "react";
 import { Mutation } from "react-apollo";
-import { createAnimal } from "../../../../../server/schema/graphql/Mutations.graphql";
+import { createAnimal } from "../../../../../../server/schema/graphql/Mutations.graphql";
 import {
   CreateAnimalMutation,
   CreateAnimalVariables
-} from "../../../../__types__/typeDefs";
-import "./main.scss";
-import { rootStoreContext } from "../../../../stores/RootStore";
+} from "../../../../../__types__/typeDefs";
+import { rootStoreContext } from "../../../../../stores/RootStore";
+import * as style from "./main.scss";
+import { Button } from "../Button";
 
 export const CreateAnimal: React.FunctionComponent = observer(() => {
   const [submitting, setSubmitting] = React.useState(false);
@@ -21,7 +22,7 @@ export const CreateAnimal: React.FunctionComponent = observer(() => {
         <>
           <p>What is your favorite animal's favorite food?</p>
           <form>
-            <div className="field">
+            <div className={style.field}>
               <label>Species:</label>
               <input
                 type="text"
@@ -29,7 +30,7 @@ export const CreateAnimal: React.FunctionComponent = observer(() => {
                 onChange={e => (animalsStore.species = e.target.value)}
               />
             </div>
-            <div className="field">
+            <div className={style.field}>
               <label>Favorite food:</label>
               <input
                 type="text"
@@ -37,9 +38,9 @@ export const CreateAnimal: React.FunctionComponent = observer(() => {
                 onChange={e => (animalsStore.favoriteFood = e.target.value)}
               />
             </div>
-            <div className="button-wrapper">
-              <button
-                className="button"
+            <div className={style.buttonWrapper}>
+              <Button
+                label={submitting ? "Creating..." : "Create"}
                 onClick={async () => {
                   setSubmitting(true);
                   await mutate({
@@ -53,9 +54,7 @@ export const CreateAnimal: React.FunctionComponent = observer(() => {
                       setSubmitting(false);
                     });
                 }}
-              >
-                <span>{submitting ? "Submitting..." : "Submit"}</span>
-              </button>
+              />
             </div>
           </form>
         </>
