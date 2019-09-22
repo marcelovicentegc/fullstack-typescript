@@ -21,9 +21,7 @@ export class AnimalsStore {
   @observable public delete = false;
 
   @action public handleMutation = () => {
-    if (this.mutation) {
-      this.mutation = true;
-    }
+    this.mutation = true;
   };
   @action public handleCreate = () => {
     this.create = true;

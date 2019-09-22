@@ -1,15 +1,17 @@
 import { inject, observer } from "mobx-react";
 import * as React from "react";
-import { AnimalsStore } from "../../../stores/AnimalsStore";
+import { AnimalsStore, ErrorStore } from "../../../stores";
 import { CreateAnimal } from "./crud/CreateAnimal";
 import { ListAnimals } from "./crud/ListAnimals";
 import "./main.scss";
+import { ErrorMessage } from "./misc/ErrorMessage";
 
 interface Props {
   animalsStore?: AnimalsStore;
+  errorStore?: ErrorStore;
 }
 
-@inject("animalsStore")
+@inject("animalsStore", "errorStore")
 @observer
 export class HelloWorld extends React.Component<Props> {
   private handleCreate = () => {
@@ -27,6 +29,9 @@ export class HelloWorld extends React.Component<Props> {
   public render() {
     return (
       <>
+        {this.props.errorStore.errorMessage && (
+          <ErrorMessage errorMessage={this.props.errorStore.errorMessage} />
+        )}
         {this.props.animalsStore.helloworld && (
           <>
             <div className="hello-world">

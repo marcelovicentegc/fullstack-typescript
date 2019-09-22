@@ -10,7 +10,8 @@ import "./main.scss";
 import { rootStoreContext } from "../../../../stores/RootStore";
 
 export const CreateAnimal: React.FunctionComponent = observer(() => {
-  const { animalsStore } = React.useContext(rootStoreContext);
+  const [submitting, setSubmitting] = React.useState(false);
+  const { animalsStore, errorStore } = React.useContext(rootStoreContext);
 
   return (
     <Mutation<CreateAnimalMutation, CreateAnimalVariables>
@@ -40,15 +41,20 @@ export const CreateAnimal: React.FunctionComponent = observer(() => {
               <button
                 className="button"
                 onClick={async () => {
+                  setSubmitting(true);
                   await mutate({
                     variables: {
                       species: animalsStore.species,
                       favoriteFood: animalsStore.favoriteFood
                     }
-                  });
+                  })
+                    .catch(error => errorStore.setErrorMessage(error.message))
+                    .finally(() => {
+                      setSubmitting(false);
+                    });
                 }}
               >
-                Submit
+                <span>{submitting ? "Submitting..." : "Submit"}</span>
               </button>
             </div>
           </form>
