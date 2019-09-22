@@ -1,7 +1,7 @@
 import { shallow } from "enzyme";
 import * as React from "react";
 import { Mutation } from "react-apollo";
-import DeleteAnimal from "../modules/hello_world/ui/crud/DeleteAnimal";
+import { DeleteAnimal } from "../modules/hello_world/ui/crud/DeleteAnimal";
 
 describe("DeleteAnimal suite", () => {
   const wrapper = shallow(

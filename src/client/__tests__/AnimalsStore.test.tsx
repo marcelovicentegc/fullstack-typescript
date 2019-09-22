@@ -1,7 +1,8 @@
 import { AnimalsStore } from "../stores";
+import { rootStore } from "../stores/RootStore";
 
 describe("AnimalsStore suite", () => {
-  const animalsStore = new AnimalsStore(this);
+  const animalsStore = new AnimalsStore(rootStore);
 
   beforeEach(() => {
     (animalsStore.helloworld = true),

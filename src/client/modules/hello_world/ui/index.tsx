@@ -1,8 +1,8 @@
 import { inject, observer } from "mobx-react";
 import * as React from "react";
-import { AnimalsStore } from "../../../stores/AnimalsStore.store";
-import CreateAnimal from "./crud/CreateAnimal";
-import ListAnimals from "./crud/ListAnimals";
+import { AnimalsStore } from "../../../stores/AnimalsStore";
+import { CreateAnimal } from "./crud/CreateAnimal";
+import { ListAnimals } from "./crud/ListAnimals";
 import "./main.scss";
 
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
 
 @inject("animalsStore")
 @observer
-export default class HelloWorld extends React.Component<Props> {
+export class HelloWorld extends React.Component<Props> {
   private handleCreate = () => {
     this.props.animalsStore.handleCreate();
   };
@@ -24,10 +24,10 @@ export default class HelloWorld extends React.Component<Props> {
     this.props.animalsStore.handleDelete();
   };
 
-  render() {
+  public render() {
     return (
       <>
-        {this.props.animalsStore.helloworld ? (
+        {this.props.animalsStore.helloworld && (
           <>
             <div className="hello-world">
               <p>Hello world 👽!</p>
@@ -44,12 +44,12 @@ export default class HelloWorld extends React.Component<Props> {
               </button>
             </div>
           </>
-        ) : null || this.props.animalsStore.create ? (
-          <CreateAnimal />
-        ) : null || this.props.animalsStore.update ? (
-          <ListAnimals to="update" />
-        ) : null || this.props.animalsStore.delete ? (
-          <ListAnimals to="delete" />
+        )}
+        {this.props.animalsStore.create && <CreateAnimal />}
+        {this.props.animalsStore.update || this.props.animalsStore.delete ? (
+          <ListAnimals
+            to={this.props.animalsStore.update ? "update" : "delete"}
+          />
         ) : null}
       </>
     );

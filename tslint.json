@@ -8,7 +8,16 @@
   ],
   "jsRules": {},
   "rules": {
-    "prettier": true
+    "prettier": false,
+    "interface-name": false,
+    "member-ordering": false,
+    "jsx-no-multiline-js": false,
+    "curly": false,
+    "jsx-no-lambda": false,
+    "object-literal-sort-keys": false,
+    "ordered-imports": false,
+    "no-console": false,
+    "interface-over-type-literal": false
   },
   "rulesDirectory": []
 }

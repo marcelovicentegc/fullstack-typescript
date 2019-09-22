@@ -2,15 +2,16 @@ import { shallow } from "enzyme";
 import * as React from "react";
 import { Mutation } from "react-apollo";
 import { createAnimal } from "../../server/schema/graphql/Mutations.graphql";
-import CreateAnimal from "../modules/hello_world/ui/crud/CreateAnimal";
+import { CreateAnimal } from "../modules/hello_world/ui/crud/CreateAnimal";
 import { AnimalsStore } from "../stores";
 import {
   CreateAnimalMutation,
   CreateAnimalVariables
 } from "../__types__/typeDefs";
+import { rootStore } from "../stores/RootStore";
 
 describe("CreateAnimal suite", () => {
-  const animalsStore = new AnimalsStore(this);
+  const animalsStore = new AnimalsStore(rootStore);
 
   const wrapper = shallow(<CreateAnimal />);
   it("Should render without throwing an error", () => {

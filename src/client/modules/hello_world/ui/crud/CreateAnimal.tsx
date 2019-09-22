@@ -2,15 +2,15 @@ import { observer } from "mobx-react-lite";
 import * as React from "react";
 import { Mutation } from "react-apollo";
 import { createAnimal } from "../../../../../server/schema/graphql/Mutations.graphql";
-import AnimalsStore from "../../../../stores/AnimalsStore.store";
 import {
   CreateAnimalMutation,
   CreateAnimalVariables
 } from "../../../../__types__/typeDefs";
 import "./main.scss";
+import { rootStoreContext } from "../../../../stores/RootStore";
 
-const CreateAnimal: React.FunctionComponent = observer(() => {
-  const animalsStore = React.useContext(AnimalsStore);
+export const CreateAnimal: React.FunctionComponent = observer(() => {
+  const { animalsStore } = React.useContext(rootStoreContext);
 
   return (
     <Mutation<CreateAnimalMutation, CreateAnimalVariables>
@@ -57,5 +57,3 @@ const CreateAnimal: React.FunctionComponent = observer(() => {
     </Mutation>
   );
 });
-
-export default CreateAnimal;

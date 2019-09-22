@@ -1,2 +1,2 @@
-export { AnimalsStore } from "./AnimalsStore.store";
-export { RootStore } from "./RootStore.store";
+export { AnimalsStore } from "./AnimalsStore";
+export { RootStore } from "./RootStore";

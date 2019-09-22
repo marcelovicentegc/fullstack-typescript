@@ -2,17 +2,18 @@ import { shallow } from "enzyme";
 import * as React from "react";
 import { Query } from "react-apollo";
 import { getAnimals } from "../../server/schema/graphql/Queries.graphql";
-import Animal from "../modules/hello_world/ui/crud/Animal";
-import ListAnimals from "../modules/hello_world/ui/crud/ListAnimals";
-import Loading from "../modules/hello_world/ui/misc/Loading";
-import NoData from "../modules/hello_world/ui/misc/NoData";
+import { Animal } from "../modules/hello_world/ui/crud/Animal";
+import { ListAnimals } from "../modules/hello_world/ui/crud/ListAnimals";
+import { Loading } from "../modules/hello_world/ui/misc/Loading";
+import { NoData } from "../modules/hello_world/ui/misc/NoData";
 import { AnimalsStore } from "../stores";
 import { GetAnimalsQuery } from "../__types__/typeDefs";
+import { rootStore } from "../stores/RootStore";
 
 describe("ListAnimals suite", () => {
   const props = {
     to: "update",
-    animalsStore: new AnimalsStore(this)
+    animalsStore: new AnimalsStore(rootStore)
   };
 
   it("Should render without throwing an error", () => {

@@ -5,18 +5,18 @@ import {
   GetAnimalQuery,
   GetAnimalVariables
 } from "../../../../__types__/typeDefs";
-import Loading from "../misc/Loading";
-import NoData from "../misc/NoData";
-import DeleteAnimal from "./DeleteAnimal";
-import UpdateAnimal from "./UpdateAnimal";
+import { Loading } from "../misc/Loading";
+import { NoData } from "../misc/NoData";
+import { DeleteAnimal } from "./DeleteAnimal";
+import { UpdateAnimal } from "./UpdateAnimal";
 
 interface Props {
   selected: string;
   to: string;
 }
 
-export default class Animal extends React.Component<Props> {
-  render() {
+export class Animal extends React.Component<Props> {
+  public render() {
     return (
       <Query<GetAnimalQuery, GetAnimalVariables>
         query={getAnimal}

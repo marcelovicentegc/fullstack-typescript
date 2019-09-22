@@ -1,11 +1,19 @@
 # 👽 fullstack-typescript
 
-### General features
+## Environment variables
+
+- Client TCP: `CLIENT_TCP`
+- Server TCP: `SERVER_TCP`
+- Environment: `ENV`
+
+By default, the client runs on port `4000` and the server on port `8080`.
+
+## General features
 
 - Hot module and live reload
 - File upload ready
 
-### Client-side features
+## Client-side features
 
 - UI framework:
 
@@ -22,7 +30,7 @@
 - Testing framework:
   - **Enzyme**
 
-### Server-side features
+## Server-side features
 
 - HTTP server:
 
@@ -50,4 +58,4 @@
 2. Change directory: `cd fullstack-typescript`
 3. Install dependencies: `yarn install` or `npm install`
 4. Create a Postgres database and set your credentials on a `ormconfig.json` file, similar to `ormconfig.example.json`
-5. Run the application: `yarn start` or `npm start`
+5. Run the application: `yarn start` or `npm run start`

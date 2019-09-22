@@ -16,8 +16,8 @@ interface Props {
 
 @inject("animalsStore")
 @observer
-export default class UpdateAnimal extends React.Component<Props> {
-  render() {
+export class UpdateAnimal extends React.Component<Props> {
+  public render() {
     return (
       <>
         <Mutation<UpdateAnimalMutation, UpdateAnimalVariables>

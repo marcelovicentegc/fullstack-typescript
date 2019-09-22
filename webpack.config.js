@@ -3,12 +3,9 @@ const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
-const WebappWebpackPlugin = require("webapp-webpack-plugin");
-
-const DEV_MODE = process.env.NODE_ENV === "development";
 
 const smp = new SpeedMeasurePlugin({
-  disable: !DEV_MODE,
+  disable: process.env.NODE_ENV !== "development",
   outputFormat: "humanVerbose"
 });
 
@@ -19,36 +16,28 @@ module.exports = smp.wrap({
     client: "./src/client/index.tsx"
   },
   output: {
-    filename: "bundle.js",
+    filename: "bundle-[hash].js",
     path: path.resolve(__dirname, "dist/")
   },
   devtool: "source-map",
   node: { fs: "empty" },
   resolve: {
-    extensions: [".ts", ".tsx", ".mjs", ".js", ".json"]
+    extensions: [".ts", ".tsx", ".mjs", ".js", ".json"],
+    alias: {
+      "react-dom": "@hot-loader/react-dom"
+    }
   },
   plugins: [
-    new webpack.ProvidePlugin({
-      $: "jquery",
-      jQuery: "jquery",
-      "window.jQuery": "jquery"
-    }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "src", "client", "index.html"),
       filename: "index.html"
     }),
     new webpack.DefinePlugin({
       "process.env": {
-        TCP: JSON.stringify(process.env.TCP),
+        CLIENT_TCP: JSON.stringify(process.env.CLIENT_TCP),
         NODE_ENV: JSON.stringify(process.env.NODE_ENV)
       }
     }),
-    new WebappWebpackPlugin({
-      logo: "./src/client/assets/fullstack-typescript.png",
-      cache: true,
-      inject: true
-    }),
-    new webpack.HotModuleReplacementPlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin()
   ],
@@ -122,7 +111,6 @@ module.exports = smp.wrap({
     watchContentBase: true,
     compress: true,
     port: 3000,
-    hot: true,
     inline: true,
     open: true,
     openPage: "",

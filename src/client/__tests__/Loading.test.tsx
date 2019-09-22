@@ -1,8 +1,8 @@
 import { shallow } from "enzyme";
 import * as React from "react";
-import Loading from "../modules/hello_world/ui/misc/Loading";
+import { Loading } from "../modules/hello_world/ui/misc/Loading";
 
-describe("NoData test suite", () => {
+describe("Loading test suite", () => {
   it("Should render without throwing an error", () => {
     expect(
       shallow(<Loading />).contains(

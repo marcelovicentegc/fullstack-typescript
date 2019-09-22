@@ -11,8 +11,8 @@ interface Props {
   animal: GetAnimalAnimal;
 }
 
-export default class DeleteAnimal extends React.Component<Props> {
-  render() {
+export class DeleteAnimal extends React.Component<Props> {
+  public render() {
     return (
       <>
         <Mutation<DeleteAnimalMutation, DeleteAnimalVariables>

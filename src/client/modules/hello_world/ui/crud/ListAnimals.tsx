@@ -4,9 +4,9 @@ import { Query } from "react-apollo";
 import { getAnimals } from "../../../../../server/schema/graphql/Queries.graphql";
 import { AnimalsStore } from "../../../../stores";
 import { GetAnimalsQuery } from "../../../../__types__/typeDefs";
-import Loading from "../misc/Loading";
-import NoData from "../misc/NoData";
-import Animal from "./Animal";
+import { Loading } from "../misc/Loading";
+import { NoData } from "../misc/NoData";
+import { Animal } from "./Animal";
 
 interface Props {
   to: string;
@@ -15,12 +15,12 @@ interface Props {
 
 @inject("animalsStore")
 @observer
-export default class ListAnimals extends React.Component<Props> {
-  handleMutation = () => {
+export class ListAnimals extends React.Component<Props> {
+  private handleMutation = () => {
     this.props.animalsStore.handleMutation();
   };
 
-  render() {
+  public render() {
     return (
       <>
         {!this.props.animalsStore.mutation ? (

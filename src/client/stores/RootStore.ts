@@ -1,4 +1,5 @@
-import { AnimalsStore } from "./AnimalsStore.store";
+import { AnimalsStore } from "./AnimalsStore";
+import { createContext } from "react";
 
 export class RootStore {
   public animalsStore: AnimalsStore;
@@ -11,3 +12,6 @@ export class RootStore {
     };
   }
 }
+
+export const rootStore = new RootStore();
+export const rootStoreContext = createContext(rootStore);

@@ -1,6 +1,6 @@
 import { shallow } from "enzyme";
 import * as React from "react";
-import NoData from "../modules/hello_world/ui/misc/NoData";
+import { NoData } from "../modules/hello_world/ui/misc/NoData";
 
 describe("NoData test suite", () => {
   it("Should render without throwing an error", () => {

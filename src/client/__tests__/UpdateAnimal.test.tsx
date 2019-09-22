@@ -2,12 +2,13 @@ import { shallow } from "enzyme";
 import * as React from "react";
 import { Mutation } from "react-apollo";
 import { updateAnimal } from "../../server/schema/graphql/Mutations.graphql";
-import UpdateAnimal from "../modules/hello_world/ui/crud/UpdateAnimal";
+import { UpdateAnimal } from "../modules/hello_world/ui/crud/UpdateAnimal";
 import { AnimalsStore } from "../stores";
 import {
   UpdateAnimalMutation,
   UpdateAnimalVariables
 } from "../__types__/typeDefs";
+import { rootStore } from "../stores/RootStore";
 
 describe("UpdateAnimal suite", () => {
   const props = {
@@ -16,7 +17,7 @@ describe("UpdateAnimal suite", () => {
       species: "Magic mushroom",
       favoriteFood: "Dead plants"
     },
-    animalsStore: new AnimalsStore(this)
+    animalsStore: new AnimalsStore(rootStore)
   };
 
   it("Should render without throwing an error", () => {
