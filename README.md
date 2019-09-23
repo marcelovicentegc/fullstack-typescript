@@ -1,5 +1,8 @@
 # 🈵 fullstack-typescript
 
+[![Build Status](https://dev.azure.com/marcelovicentegc/public-pipes/_apis/build/status/marcelovicentegc.fullstack-typescript?branchName=master)](https://dev.azure.com/marcelovicentegc/public-pipes/_build/latest?definitionId=2&branchName=master)
+[![Main workflow](https://github.com/marcelovicentegc/fullstack-typescript/workflows/Main%20workflow/badge.svg)](<(https://github.com/marcelovicentegc/fullstack-typescript/workflows/Main%20workflow/badge.svg)>)
+
 ## 📦 General features
 
 - Hot module and live reload
