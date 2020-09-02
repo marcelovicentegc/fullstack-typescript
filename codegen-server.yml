@@ -1,0 +1,10 @@
+overwrite: true
+schema: "http://127.0.0.1:8080/api"
+documents: ./src/gql/*.graphql.{ts, tsx}
+generates:
+  ./src/server/gql/index.ts:
+    config:
+      noNamespaces: true
+    plugins:
+      - typescript
+      - typescript-resolvers

@@ -1,31 +1,31 @@
 import * as React from "react";
 import { Mutation } from "react-apollo";
-import { deleteAnimal } from "../../../../../../server/schema/graphql/Mutations.graphql";
-import {
-  DeleteAnimalMutation,
-  DeleteAnimalVariables,
-  GetAnimalAnimal
-} from "../../../../../__types__/typeDefs";
 import { Button } from "../Button";
+import {
+  Animal,
+  DeleteAnimalMutation,
+  DeleteAnimalMutationVariables,
+  DeleteAnimalDocument,
+} from "../../../../../gql";
 
 interface Props {
-  animal: GetAnimalAnimal;
+  animal: Animal;
 }
 
 export class DeleteAnimal extends React.Component<Props> {
   public render() {
     return (
       <>
-        <Mutation<DeleteAnimalMutation, DeleteAnimalVariables>
-          mutation={deleteAnimal}
+        <Mutation<DeleteAnimalMutation, DeleteAnimalMutationVariables>
+          mutation={DeleteAnimalDocument}
         >
-          {mutate => (
+          {(mutate) => (
             <Button
               onClick={async () => {
                 await mutate({
                   variables: {
-                    id: this.props.animal.id
-                  }
+                    id: this.props.animal.id,
+                  },
                 }).then(() => window.location.reload());
               }}
               label={"Delete"}

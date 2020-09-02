@@ -20,4 +20,4 @@ Run client-side unit tests:
   stage: test-client
   image: node:latest
   script:
-    - yarn test-client
+    - yarn test:client

@@ -1,13 +1,13 @@
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity("animal")
-export default class Animal extends BaseEntity {
+@Entity("animals")
+export class Animal extends BaseEntity {
   @PrimaryGeneratedColumn()
-  id: number;
+  public id: string;
 
   @Column({ nullable: true })
-  species: string;
+  public species: string;
 
   @Column({ nullable: true })
-  favoriteFood: string;
+  public favoriteFood: string;
 }

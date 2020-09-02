@@ -1,13 +1,12 @@
 import { inject, observer } from "mobx-react";
 import * as React from "react";
 import { Query } from "react-apollo";
-import { getAnimals } from "../../../../../../server/schema/graphql/Queries.graphql";
 import { AnimalsStore } from "../../../../../stores";
-import { GetAnimalsQuery } from "../../../../../__types__/typeDefs";
 import { Loading } from "../Loading";
 import { NoData } from "../NoData";
 import { Animal } from "../Animal";
 import * as style from "./main.scss";
+import { GetAnimalsQuery, GetAnimalsDocument } from "../../../../../gql";
 
 interface Props {
   to: string;
@@ -27,7 +26,7 @@ export class ListAnimals extends React.Component<Props> {
         {!this.props.animalsStore.mutation ? (
           <>
             <p>Select the animal you wish to {this.props.to}:</p>
-            <Query<GetAnimalsQuery> query={getAnimals}>
+            <Query<GetAnimalsQuery> query={GetAnimalsDocument}>
               {({ data, loading }) => {
                 if (loading) return <Loading />;
                 if (!data || data.animals.length === 0) return <NoData />;

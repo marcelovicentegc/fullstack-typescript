@@ -46,11 +46,11 @@ export class HelloWorld extends React.Component<Props> {
           </>
         )}
         {this.props.animalsStore.create && <CreateAnimal />}
-        {this.props.animalsStore.update || this.props.animalsStore.delete ? (
+        {(this.props.animalsStore.update || this.props.animalsStore.delete) && (
           <ListAnimals
             to={this.props.animalsStore.update ? "update" : "delete"}
           />
-        ) : null}
+        )}
       </>
     );
   }

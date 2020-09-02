@@ -29,11 +29,11 @@ const client = new ApolloClient({
       if (networkError) console.log(`[Network error]: ${networkError}`);
     }),
     createUploadLink({
-      uri: `http://127.0.0.1:${serverPort}/api/playground`,
-      credentials: "include"
-    })
+      uri: `http://127.0.0.1:${serverPort}/api`,
+      credentials: "include",
+    }),
   ]),
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
 });
 
 const App: React.SFC = () => {

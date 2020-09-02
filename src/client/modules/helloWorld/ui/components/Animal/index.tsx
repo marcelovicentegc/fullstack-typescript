@@ -1,14 +1,14 @@
 import * as React from "react";
 import { Query } from "react-apollo";
-import { getAnimal } from "../../../../../../server/schema/graphql/Queries.graphql";
-import {
-  GetAnimalQuery,
-  GetAnimalVariables
-} from "../../../../../__types__/typeDefs";
 import { Loading } from "../Loading";
 import { NoData } from "../NoData";
 import { DeleteAnimal } from "../DeleteAnimal";
 import { UpdateAnimal } from "../UpdateAnimal";
+import {
+  GetAnimalQuery,
+  GetAnimalQueryVariables,
+  GetAnimalDocument,
+} from "../../../../../gql";
 
 interface Props {
   selected: string;
@@ -18,8 +18,8 @@ interface Props {
 export class Animal extends React.Component<Props> {
   public render() {
     return (
-      <Query<GetAnimalQuery, GetAnimalVariables>
-        query={getAnimal}
+      <Query<GetAnimalQuery, GetAnimalQueryVariables>
+        query={GetAnimalDocument}
         variables={{ id: this.props.selected }}
       >
         {({ data, loading }) => {

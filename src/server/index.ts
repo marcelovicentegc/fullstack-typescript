@@ -5,7 +5,7 @@ import * as express from "express";
 import * as path from "path";
 import "reflect-metadata";
 import { createConnection, getConnectionOptions } from "typeorm";
-import schema from "./schema/schema";
+import { schema } from "./schema";
 
 const port = process.env.SERVER_TCP;
 
@@ -13,39 +13,39 @@ const startServer = async () => {
   const server = new ApolloServer({
     schema,
     playground: {
-      endpoint: "/api/playground"
+      endpoint: "/api",
     },
-    context: ({ req, res }: any) => ({ req, res })
+    context: ({ req, res }: any) => ({ req, res }),
   });
 
   await getConnectionOptions()
-    .then(async connectionOptions => {
+    .then(async (connectionOptions) => {
       if (process.env.NODE_ENV === "production") {
         Object.assign(connectionOptions, {
           entities: ["dist/server/database/**/*.model.js"],
           cli: {
-            entitiesDir: "dist/server/database/entities"
-          }
+            entitiesDir: "dist/server/database/entities",
+          },
         });
       }
       await createConnection(connectionOptions)
-        .then(connection => {
+        .then((connection) => {
           console.log("Connected to database: ", connection.isConnected);
 
           const app = express();
           app.use(bodyParser.json());
           server.applyMiddleware({
             app,
-            path: "/api/playground",
+            path: "/api",
             cors: {
               origin: [
                 "http://localhost:3000",
                 "http://127.0.0.1:3000",
                 "http://localhost:4000",
-                "http://127.0.0.1:4000"
+                "http://127.0.0.1:4000",
               ],
-              credentials: true
-            }
+              credentials: true,
+            },
           });
 
           if (process.env.NODE_ENV === "production") {
@@ -57,10 +57,10 @@ const startServer = async () => {
                   "http://localhost:3000",
                   "http://127.0.0.1:3000",
                   "http://localhost:4000",
-                  "http://127.0.0.1:4000"
-                ]
+                  "http://127.0.0.1:4000",
+                ],
               }),
-              (req, res) => {
+              (_, res) => {
                 res.sendFile(path.resolve("./dist/index.html"));
               }
             );
@@ -80,11 +80,11 @@ const startServer = async () => {
             });
           }
         })
-        .catch(async error => {
+        .catch(async (error) => {
           console.log("TypeORM createConnection error: ", error);
         });
     })
-    .catch(error => {
+    .catch((error) => {
       console.log("TypeORM getConnectionOptions error: ", error);
     });
 };

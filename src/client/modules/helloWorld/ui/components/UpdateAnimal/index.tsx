@@ -1,18 +1,18 @@
 import { inject, observer } from "mobx-react";
 import * as React from "react";
 import { Mutation } from "react-apollo";
-import { updateAnimal } from "../../../../../../server/schema/graphql/Mutations.graphql";
 import { AnimalsStore } from "../../../../../stores";
-import {
-  GetAnimalAnimal,
-  UpdateAnimalMutation,
-  UpdateAnimalVariables
-} from "../../../../../__types__/typeDefs";
 import { Button } from "../Button";
 import * as style from "./main.scss";
+import {
+  Animal,
+  UpdateAnimalMutation,
+  UpdateAnimalMutationVariables,
+  UpdateAnimalDocument,
+} from "../../../../../gql";
 
 interface Props {
-  animal: GetAnimalAnimal;
+  animal: Animal;
   animalsStore?: AnimalsStore;
 }
 
@@ -22,17 +22,17 @@ export class UpdateAnimal extends React.Component<Props> {
   public render() {
     return (
       <>
-        <Mutation<UpdateAnimalMutation, UpdateAnimalVariables>
-          mutation={updateAnimal}
+        <Mutation<UpdateAnimalMutation, UpdateAnimalMutationVariables>
+          mutation={UpdateAnimalDocument}
         >
-          {mutate => (
+          {(mutate) => (
             <form>
               <div className={style.field}>
                 <label>Species:</label>
                 <input
                   type="text"
                   placeholder={this.props.animal.species}
-                  onChange={e =>
+                  onChange={(e) =>
                     (this.props.animalsStore.species = e.target.value)
                   }
                 />
@@ -42,7 +42,7 @@ export class UpdateAnimal extends React.Component<Props> {
                 <input
                   type="text"
                   placeholder={this.props.animal.favoriteFood}
-                  onChange={e =>
+                  onChange={(e) =>
                     (this.props.animalsStore.favoriteFood = e.target.value)
                   }
                 />
@@ -55,8 +55,8 @@ export class UpdateAnimal extends React.Component<Props> {
                       variables: {
                         id: this.props.animal.id,
                         species: this.props.animalsStore.species,
-                        favoriteFood: this.props.animalsStore.favoriteFood
-                      }
+                        favoriteFood: this.props.animalsStore.favoriteFood,
+                      },
                     });
                   }}
                 />

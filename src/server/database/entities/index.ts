@@ -1,3 +1,1 @@
-import Animal from "./Animals.model";
-
-export { Animal };
+export { Animal } from "./Animal.model";
