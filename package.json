@@ -54,7 +54,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.5.0",
     "jest-transform-stub": "^2.0.0",
-    "node-sass": "^4.11.0",
+    "node-sass": "^4.13.1",
     "nodemon": "^1.18.10",
     "react-hot-loader": "^4.7.1",
     "rimraf": "^3.0.0",
